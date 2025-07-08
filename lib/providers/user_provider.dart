@@ -4,7 +4,7 @@ import '../services/user_service.dart';
 
 class UserProvider with ChangeNotifier {
   final UserService _userService = UserService();
-  
+
   List<User> _users = [];
   User? _currentUser;
   bool _isLoading = false;
@@ -28,7 +28,7 @@ class UserProvider with ChangeNotifier {
   Future<void> loadUsers() async {
     _setLoading(true);
     _setError(null);
-    
+
     try {
       _users = await _userService.getUsers();
       notifyListeners();
@@ -42,7 +42,7 @@ class UserProvider with ChangeNotifier {
   Future<void> loadUser(String id) async {
     _setLoading(true);
     _setError(null);
-    
+
     try {
       _currentUser = await _userService.getUserById(id);
       notifyListeners();
@@ -56,7 +56,7 @@ class UserProvider with ChangeNotifier {
   Future<void> createUser(User user) async {
     _setLoading(true);
     _setError(null);
-    
+
     try {
       final newUser = await _userService.createUser(user);
       _users.add(newUser);
@@ -71,7 +71,7 @@ class UserProvider with ChangeNotifier {
   Future<void> updateUser(User user) async {
     _setLoading(true);
     _setError(null);
-    
+
     try {
       final updatedUser = await _userService.updateUser(user);
       final index = _users.indexWhere((u) => u.id == user.id);
@@ -92,7 +92,7 @@ class UserProvider with ChangeNotifier {
   Future<void> deleteUser(String id) async {
     _setLoading(true);
     _setError(null);
-    
+
     try {
       final success = await _userService.deleteUser(id);
       if (success) {

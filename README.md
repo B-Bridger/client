@@ -46,16 +46,17 @@ lib/
    flutter pub get
    ```
 3. **Run the app**:
+
    ```bash
    # For macOS
    flutter run -d macos
-   
+
    # For Windows
    flutter run -d windows
-   
+
    # For Android
    flutter run -d android
-   
+
    # For iOS
    flutter run -d ios
    ```
@@ -71,6 +72,7 @@ The app automatically adapts to different screen sizes:
 ## Window Management
 
 On desktop platforms, the app includes:
+
 - Custom window sizing and positioning
 - Minimum window size constraints
 - Window title management
@@ -79,6 +81,7 @@ On desktop platforms, the app includes:
 ## State Management
 
 The app uses Provider for state management with:
+
 - User management (CRUD operations)
 - Loading states
 - Error handling
@@ -87,6 +90,7 @@ The app uses Provider for state management with:
 ## Development
 
 The project follows clean architecture principles:
+
 - Separation of concerns
 - Testable code structure
 - Responsive design patterns

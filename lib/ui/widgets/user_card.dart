@@ -25,7 +25,9 @@ class UserCard extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(8),
         child: Padding(
-          padding: EdgeInsets.all(ResponsiveUtils.getResponsivePadding(context)),
+          padding: EdgeInsets.all(
+            ResponsiveUtils.getResponsivePadding(context),
+          ),
           child: Row(
             children: [
               CircleAvatar(
@@ -49,7 +51,10 @@ class UserCard extends StatelessWidget {
                     Text(
                       user.name,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontSize: ResponsiveUtils.getResponsiveFontSize(context, 16),
+                        fontSize: ResponsiveUtils.getResponsiveFontSize(
+                          context,
+                          16,
+                        ),
                         fontWeight: FontWeight.bold,
                       ),
                       overflow: TextOverflow.ellipsis,
@@ -58,7 +63,10 @@ class UserCard extends StatelessWidget {
                     Text(
                       user.email,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontSize: ResponsiveUtils.getResponsiveFontSize(context, 14),
+                        fontSize: ResponsiveUtils.getResponsiveFontSize(
+                          context,
+                          14,
+                        ),
                         color: Theme.of(context).textTheme.bodySmall?.color,
                       ),
                       overflow: TextOverflow.ellipsis,

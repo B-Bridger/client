@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import '../../utils/responsive_utils.dart';
 
 class ResponsiveBuilder extends StatelessWidget {
-  final Widget Function(BuildContext context, bool isMobile, bool isTablet, bool isDesktop) builder;
+  final Widget Function(
+    BuildContext context,
+    bool isMobile,
+    bool isTablet,
+    bool isDesktop,
+  )
+  builder;
 
-  const ResponsiveBuilder({
-    super.key,
-    required this.builder,
-  });
+  const ResponsiveBuilder({super.key, required this.builder});
 
   @override
   Widget build(BuildContext context) {
     final isMobile = ResponsiveUtils.isMobile(context);
-    final isTablet = ResponsiveUtils.isTablet(context) || ResponsiveUtils.isLargeTablet(context);
+    final isTablet =
+        ResponsiveUtils.isTablet(context) ||
+        ResponsiveUtils.isLargeTablet(context);
     final isDesktop = ResponsiveUtils.isDesktop(context);
 
     return builder(context, isMobile, isTablet, isDesktop);

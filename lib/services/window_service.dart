@@ -6,7 +6,8 @@ import 'package:bitsdojo_window/bitsdojo_window.dart';
 
 class WindowService {
   static bool get isDesktopPlatform {
-    return !kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS);
+    return !kIsWeb &&
+        (Platform.isWindows || Platform.isLinux || Platform.isMacOS);
   }
 
   static Future<void> initialize() async {

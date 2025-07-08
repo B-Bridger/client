@@ -45,9 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const SettingsScreen(),
-              ),
+              MaterialPageRoute(builder: (context) => const SettingsScreen()),
             ),
           ),
         ],
@@ -73,7 +71,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       'Error: ${userProvider.error}',
                       style: TextStyle(
-                        fontSize: ResponsiveUtils.getResponsiveFontSize(context, 16),
+                        fontSize: ResponsiveUtils.getResponsiveFontSize(
+                          context,
+                          16,
+                        ),
                         color: Theme.of(context).colorScheme.error,
                       ),
                       textAlign: TextAlign.center,
@@ -99,22 +100,34 @@ class _HomeScreenState extends State<HomeScreen> {
                     Icon(
                       Icons.people_outline,
                       size: 64,
-                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withOpacity(0.5),
                     ),
                     const SizedBox(height: 16),
                     Text(
                       'No users found',
                       style: TextStyle(
-                        fontSize: ResponsiveUtils.getResponsiveFontSize(context, 18),
-                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                        fontSize: ResponsiveUtils.getResponsiveFontSize(
+                          context,
+                          18,
+                        ),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withOpacity(0.7),
                       ),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       'Add your first user to get started',
                       style: TextStyle(
-                        fontSize: ResponsiveUtils.getResponsiveFontSize(context, 14),
-                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                        fontSize: ResponsiveUtils.getResponsiveFontSize(
+                          context,
+                          14,
+                        ),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withOpacity(0.5),
                       ),
                     ),
                   ],
@@ -201,10 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Email: ${user.email}'),
-            Text('ID: ${user.id}'),
-          ],
+          children: [Text('Email: ${user.email}'), Text('ID: ${user.id}')],
         ),
         actions: [
           TextButton(
@@ -245,9 +255,9 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Navigator.of(context).pop();
               context.read<UserProvider>().deleteUser(user.id);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('${user.name} deleted')),
-              );
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text('${user.name} deleted')));
             },
             style: TextButton.styleFrom(foregroundColor: Colors.red),
             child: const Text('Delete'),

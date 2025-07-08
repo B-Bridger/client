@@ -52,9 +52,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   (value) => setState(() => _fontSize = value),
                 ),
               ]),
-              
+
               SizedBox(height: ResponsiveUtils.getResponsivePadding(context)),
-              
+
               _buildSectionHeader('Preferences'),
               _buildSettingsCard([
                 _buildSwitchTile(
@@ -72,9 +72,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   (value) => setState(() => _animations = value),
                 ),
               ]),
-              
+
               SizedBox(height: ResponsiveUtils.getResponsivePadding(context)),
-              
+
               _buildSectionHeader('About'),
               _buildSettingsCard([
                 _buildInfoTile('Version', Constants.appVersion, Icons.info),
@@ -116,9 +116,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         horizontal: ResponsiveUtils.getResponsivePadding(context),
         vertical: ResponsiveUtils.getResponsivePadding(context) / 4,
       ),
-      child: Column(
-        children: children,
-      ),
+      child: Column(children: children),
     );
   }
 
@@ -144,10 +142,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           color: Theme.of(context).textTheme.bodySmall?.color,
         ),
       ),
-      secondary: Icon(
-        icon,
-        size: ResponsiveUtils.isMobile(context) ? 24 : 28,
-      ),
+      secondary: Icon(icon, size: ResponsiveUtils.isMobile(context) ? 24 : 28),
       value: value,
       onChanged: onChanged,
     );
@@ -163,10 +158,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     ValueChanged<double> onChanged,
   ) {
     return ListTile(
-      leading: Icon(
-        icon,
-        size: ResponsiveUtils.isMobile(context) ? 24 : 28,
-      ),
+      leading: Icon(icon, size: ResponsiveUtils.isMobile(context) ? 24 : 28),
       title: Text(
         title,
         style: TextStyle(
@@ -199,10 +191,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Widget _buildInfoTile(String title, String value, IconData icon) {
     return ListTile(
-      leading: Icon(
-        icon,
-        size: ResponsiveUtils.isMobile(context) ? 24 : 28,
-      ),
+      leading: Icon(icon, size: ResponsiveUtils.isMobile(context) ? 24 : 28),
       title: Text(
         title,
         style: TextStyle(
@@ -227,10 +216,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     VoidCallback onTap,
   ) {
     return ListTile(
-      leading: Icon(
-        icon,
-        size: ResponsiveUtils.isMobile(context) ? 24 : 28,
-      ),
+      leading: Icon(icon, size: ResponsiveUtils.isMobile(context) ? 24 : 28),
       title: Text(
         title,
         style: TextStyle(
@@ -255,7 +241,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Reset Settings'),
-        content: const Text('Are you sure you want to reset all settings to default values?'),
+        content: const Text(
+          'Are you sure you want to reset all settings to default values?',
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -271,7 +259,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 _fontSize = 16.0;
               });
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Settings reset to default values')),
+                const SnackBar(
+                  content: Text('Settings reset to default values'),
+                ),
               );
             },
             style: TextButton.styleFrom(foregroundColor: Colors.red),

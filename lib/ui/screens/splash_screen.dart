@@ -16,22 +16,18 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-    
+
     _animationController = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
     );
-    
-    _fadeAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    ));
-    
+
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
+
     _animationController.forward();
-    
+
     // 3초 후 홈 화면으로 이동
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
@@ -70,12 +66,16 @@ class _SplashScreenState extends State<SplashScreen>
                   color: Theme.of(context).colorScheme.onPrimary,
                 ),
               ),
-              SizedBox(height: ResponsiveUtils.getResponsivePadding(context) / 2),
+              SizedBox(
+                height: ResponsiveUtils.getResponsivePadding(context) / 2,
+              ),
               Text(
                 'Cross-Platform Connection',
                 style: TextStyle(
                   fontSize: ResponsiveUtils.getResponsiveFontSize(context, 16),
-                  color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.8),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onPrimary.withOpacity(0.8),
                 ),
               ),
             ],

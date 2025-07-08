@@ -5,11 +5,7 @@ class LoadingWidget extends StatelessWidget {
   final String? message;
   final Color? color;
 
-  const LoadingWidget({
-    super.key,
-    this.message,
-    this.color,
-  });
+  const LoadingWidget({super.key, this.message, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -75,12 +71,16 @@ class EmptyStateWidget extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             if (subtitle != null) ...[
-              SizedBox(height: ResponsiveUtils.getResponsivePadding(context) / 2),
+              SizedBox(
+                height: ResponsiveUtils.getResponsivePadding(context) / 2,
+              ),
               Text(
                 subtitle!,
                 style: TextStyle(
                   fontSize: ResponsiveUtils.getResponsiveFontSize(context, 14),
-                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withOpacity(0.5),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -100,11 +100,7 @@ class ErrorWidget extends StatelessWidget {
   final String message;
   final VoidCallback? onRetry;
 
-  const ErrorWidget({
-    super.key,
-    required this.message,
-    this.onRetry,
-  });
+  const ErrorWidget({super.key, required this.message, this.onRetry});
 
   @override
   Widget build(BuildContext context) {

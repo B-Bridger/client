@@ -111,11 +111,15 @@ class AppStrings {
   static const String info = 'Info';
 
   // Confirmations
-  static const String deleteConfirmation = 'Are you sure you want to delete this item?';
-  static const String unsavedChanges = 'You have unsaved changes. Are you sure you want to leave?';
+  static const String deleteConfirmation =
+      'Are you sure you want to delete this item?';
+  static const String unsavedChanges =
+      'You have unsaved changes. Are you sure you want to leave?';
 
   // Errors
   static const String genericError = 'Something went wrong. Please try again.';
-  static const String networkError = 'Network error. Please check your connection.';
-  static const String validationError = 'Please check your input and try again.';
+  static const String networkError =
+      'Network error. Please check your connection.';
+  static const String validationError =
+      'Please check your input and try again.';
 }

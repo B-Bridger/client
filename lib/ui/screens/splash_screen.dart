@@ -31,7 +31,9 @@ class _SplashScreenState extends State<SplashScreen>
     // 3초 후 홈 화면으로 이동
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
-        Navigator.of(context).pushReplacementNamed('/home');
+        Navigator.of(
+          context,
+        ).pushReplacementNamed('/login'); // TODO: 자동 로그인 상태 -> /home 으로 이동
       }
     });
   }

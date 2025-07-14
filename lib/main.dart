@@ -1,3 +1,5 @@
+import 'package:client/providers/login_provider.dart';
+import 'package:client/ui/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/user_provider.dart';
@@ -21,7 +23,10 @@ class BridgerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => UserProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
+      ],
       child: MaterialApp(
         title: 'Bridger',
         debugShowCheckedModeBanner: false,
@@ -47,6 +52,7 @@ class BridgerApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => const SplashScreen(),
+          '/login': (context) => const LoginScreen(),
           '/home': (context) => const HomeScreen(),
           '/settings': (context) => const SettingsScreen(),
         },

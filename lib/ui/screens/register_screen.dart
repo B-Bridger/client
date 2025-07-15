@@ -1,28 +1,37 @@
-import 'package:client/providers/login_provider.dart';
-import 'package:client/ui/screens/register_screen.dart';
-import 'package:provider/provider.dart';
+import 'package:client/providers/register_provider.dart';
+import 'package:client/ui/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatefulWidget {
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
 // TODO: 반응형 지원 필요
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController _emailController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  TextEditingController _passwordConfirmController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
 
     _emailController.addListener(() {
-      context.read<LoginProvider>().updateEmail(_emailController.text);
+      context.read<RegisterProvider>().updateEmail(_emailController.text);
+    });
+    _nameController.addListener(() {
+      context.read<RegisterProvider>().updateName(_nameController.text);
     });
     _passwordController.addListener(() {
-      context.read<LoginProvider>().updatePassword(_passwordController.text);
+      context.read<RegisterProvider>().updatePassword(_passwordController.text);
+    });
+    _passwordConfirmController.addListener(() {
+      context.read<RegisterProvider>().updatePasswordConfirm(
+        _passwordConfirmController.text,
+      );
     });
   }
 
@@ -38,7 +47,6 @@ class _LoginScreenState extends State<LoginScreen> {
               fit: BoxFit.fill,
             ),
           ),
-
           Container(
             width: 350,
             color: Color(0xFF202124),
@@ -49,10 +57,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset("assets/images/logo.png", height: 300),
+                    Image.asset("assets/images/logo.png", height: 200),
                   ],
                 ),
-
                 TextField(
                   controller: _emailController,
                   decoration: InputDecoration(
@@ -66,7 +73,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 SizedBox(height: 20),
-
+                TextField(
+                  controller: _nameController,
+                  decoration: InputDecoration(
+                    hintText: "이름",
+                    fillColor: Color.fromARGB(255, 53, 54, 58),
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
                 TextField(
                   controller: _passwordController,
                   decoration: InputDecoration(
@@ -80,14 +99,27 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   obscureText: true,
                 ),
+                SizedBox(height: 20),
+                TextField(
+                  controller: _passwordConfirmController,
+                  decoration: InputDecoration(
+                    hintText: "비밀번호 재입력",
+                    fillColor: Color.fromARGB(255, 53, 54, 58),
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  obscureText: true,
+                ),
                 SizedBox(height: 50),
-
-                Consumer<LoginProvider>(
+                Consumer<RegisterProvider>(
                   builder: (context, provider, child) {
                     return ElevatedButton(
                       onPressed: provider.isValid
                           ? () {
-                              // TODO: 로그인 로직 구현 필요
+                              // TODO: 회원가입 로직 구현 필요
                             }
                           : null,
                       style: ElevatedButton.styleFrom(
@@ -99,45 +131,34 @@ class _LoginScreenState extends State<LoginScreen> {
                             : Color.fromARGB(255, 53, 54, 58),
                         minimumSize: Size(double.infinity, 48),
                       ),
-                      child: Text("다음", style: TextStyle(color: Colors.white)),
+                      child: Text(
+                        "시작하기",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     );
                   },
                 ),
-
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 30),
                   child: Divider(color: Colors.white, thickness: 0.8),
-                ),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("계정이 없으신가요?", style: TextStyle(color: Colors.white70)),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RegisterScreen(),
-                          ),
-                        );
-                      },
-                      child: Text("회원가입"),
-                    ),
-                  ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "도움이 필요하신가요?",
+                      "이미 계정이 있으신가요?",
                       style: TextStyle(color: Colors.white70),
                     ),
                     TextButton(
                       onPressed: () {
-                        // TODO: 문의 페이지 이동
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ),
+                        );
                       },
-                      child: Text("문의하기"),
+                      child: Text("로그인"),
                     ),
                   ],
                 ),

@@ -1,4 +1,5 @@
 import 'package:client/providers/login_provider.dart';
+import 'package:client/providers/register_provider.dart';
 import 'package:client/ui/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,7 @@ class BridgerApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => LoginProvider()),
+        ChangeNotifierProvider(create: (_) => RegisterProvider()),
       ],
       child: MaterialApp(
         title: 'Bridger',

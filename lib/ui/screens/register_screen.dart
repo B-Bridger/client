@@ -1,5 +1,8 @@
 import 'package:client/providers/register_provider.dart';
+import 'package:client/ui/screens/home_screen.dart';
 import 'package:client/ui/screens/login_screen.dart';
+import 'package:client/utils/http/api/user.dart';
+import 'package:client/utils/http/model/response.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -118,8 +121,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   builder: (context, provider, child) {
                     return ElevatedButton(
                       onPressed: provider.isValid
-                          ? () {
-                              // TODO: 회원가입 로직 구현 필요
+                          ? () async {
+                              ResponseWithUser result = await register(
+                                provider.email,
+                                provider.name,
+                                provider.password,
+                              );
+
+                              switch (result.statusCode) {
+                                case 201:
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomeScreen(),
+                                    ),
+                                  );
+                                  break;
+
+                                // TODO: 회원가입 실패 Dialog 처리
+                                case 400:
+                                case 409:
+                                case 500:
+                              }
                             }
                           : null,
                       style: ElevatedButton.styleFrom(

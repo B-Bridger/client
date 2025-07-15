@@ -1,5 +1,8 @@
 import 'package:client/providers/login_provider.dart';
+import 'package:client/ui/screens/home_screen.dart';
 import 'package:client/ui/screens/register_screen.dart';
+import 'package:client/utils/http/api/user.dart';
+import 'package:client/utils/http/model/response.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -86,8 +89,27 @@ class _LoginScreenState extends State<LoginScreen> {
                   builder: (context, provider, child) {
                     return ElevatedButton(
                       onPressed: provider.isValid
-                          ? () {
-                              // TODO: 로그인 로직 구현 필요
+                          ? () async {
+                              ResponseWithUserAndToken result = await login(
+                                provider.email,
+                                provider.password,
+                              );
+                              switch (result.statusCode) {
+                                case 200:
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomeScreen(),
+                                    ),
+                                  );
+                                  break;
+
+                                // TODO: 로그인 실패 Dialog 처리
+                                case 400:
+                                case 401:
+                                case 500:
+                                  break;
+                              }
                             }
                           : null,
                       style: ElevatedButton.styleFrom(

@@ -43,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         children: [
           Expanded(
             child: Image.asset(
-              "assets/images/login_background.png",
+              "assets/images/auth_background.png",
               fit: BoxFit.fill,
             ),
           ),

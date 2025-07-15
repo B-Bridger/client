@@ -44,7 +44,7 @@ class UserProvider with ChangeNotifier {
     _setError(null);
 
     try {
-      _currentUser = await _userService.getUserById(id);
+      _currentUser = await _userService.getUserByUserID(id);
       notifyListeners();
     } catch (e) {
       _setError('Failed to load user: $e');
@@ -74,11 +74,11 @@ class UserProvider with ChangeNotifier {
 
     try {
       final updatedUser = await _userService.updateUser(user);
-      final index = _users.indexWhere((u) => u.id == user.id);
+      final index = _users.indexWhere((u) => u.userID == user.userID);
       if (index != -1) {
         _users[index] = updatedUser;
       }
-      if (_currentUser?.id == user.id) {
+      if (_currentUser?.userID == user.userID) {
         _currentUser = updatedUser;
       }
       notifyListeners();
@@ -96,8 +96,8 @@ class UserProvider with ChangeNotifier {
     try {
       final success = await _userService.deleteUser(id);
       if (success) {
-        _users.removeWhere((user) => user.id == id);
-        if (_currentUser?.id == id) {
+        _users.removeWhere((user) => user.userID == id);
+        if (_currentUser?.userID == id) {
           _currentUser = null;
         }
         notifyListeners();

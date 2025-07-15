@@ -1,35 +1,63 @@
 class User {
-  final String id;
-  final String name;
+  final String userID;
   final String email;
-  final String? avatar;
+  final String name;
+  final String language;
+  final DateTime createdAt;
+  final String profile;
+  final String fcmToken;
 
   User({
-    required this.id,
-    required this.name,
+    required this.userID,
     required this.email,
-    this.avatar,
+    required this.name,
+    required this.language,
+    required this.createdAt,
+    required this.profile,
+    required this.fcmToken,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      email: json['email'] as String,
-      avatar: json['avatar'] as String?,
+      userID: json["userID"] as String,
+      email: json["email"] as String,
+      name: json["name"] as String,
+      language: json["language"] as String,
+      createdAt: DateTime.parse(json["createdAt"] as String),
+      profile: json["profile"] as String,
+      fcmToken: json["fcmToken"] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
-    return {'id': id, 'name': name, 'email': email, 'avatar': avatar};
+    return {
+      "userID": userID,
+      "email": email,
+      "name": name,
+      "language": language,
+      "createdAt": createdAt,
+      "profile": profile,
+      "fcmToken": fcmToken,
+    };
   }
 
-  User copyWith({String? id, String? name, String? email, String? avatar}) {
+  User copyWith({
+    String? userID,
+    String? name,
+    String? email,
+    String? language,
+    DateTime? createdAt,
+    String? profile,
+    String? fcmToken,
+  }) {
     return User(
-      id: id ?? this.id,
+      userID: userID ?? this.userID,
       name: name ?? this.name,
       email: email ?? this.email,
-      avatar: avatar ?? this.avatar,
+      language: language ?? this.language,
+      createdAt: createdAt ?? this.createdAt,
+      profile: profile ?? this.profile,
+      fcmToken: fcmToken ?? this.fcmToken,
     );
   }
 }

@@ -32,10 +32,10 @@ class UserCard extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: ResponsiveUtils.isMobile(context) ? 20 : 24,
-                backgroundImage: user.avatar != null
-                    ? NetworkImage(user.avatar!)
+                backgroundImage: user.profile != ""
+                    ? NetworkImage(user.profile)
                     : null,
-                child: user.avatar == null
+                child: user.profile == ""
                     ? Icon(
                         Icons.person,
                         size: ResponsiveUtils.isMobile(context) ? 20 : 24,

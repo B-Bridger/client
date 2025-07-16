@@ -26,6 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // TODO: 반응형 지원 필요
+        actionsPadding: EdgeInsets.only(right: 10),
+        backgroundColor: Color.fromARGB(255, 53, 54, 58),
         title: Text(
           'Bridger',
           style: TextStyle(
@@ -33,20 +36,18 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () {
+            // TODO: Drawer와 연동 필요
+          },
+        ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () => context.read<UserProvider>().loadUsers(),
-          ),
-          IconButton(
             icon: const Icon(Icons.add),
-            onPressed: () => _showAddUserDialog(context),
-          ),
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const SettingsScreen()),
-            ),
+            onPressed: () {
+              // TODO: Chatting Create Dialog / Page 연동 필요
+            },
           ),
         ],
       ),
